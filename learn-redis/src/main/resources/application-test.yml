@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    acceptCount: 100
+    maxConnections: 8192
+    connection-timeout: 5s
+    max-keep-alive-requests: 100
+    keep-alive-timeout: 5s
+    threads:
+      max: 200
+      min-spare: 10
+  servlet:
+    context-path: ""
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    dynamic:
+      primary: anti_fraud
+      strict: true
+      datasource:
+        anti_fraud:
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai&characterEncoding=utf-8&useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+          username: root
+          password: root
+        safe_show:
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/ads?serverTimezone=Asia/Shanghai&characterEncoding=utf-8&useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+          username: root
+          password: root
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    connect-timeout: 5s
+    timeout: 5s
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1

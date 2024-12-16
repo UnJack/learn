@@ -1,0 +1,95 @@
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    # 这里设置的日志级别优先于logback-spring.xml文件Loggers中的日志级别。
+    org.learn.tech.redis: info
+
+# server
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: ""
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  shutdown: graceful
+
+# spring配置
+spring:
+  application:
+    name: learn-redis
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  aop:
+    proxy-target-class: true
+  mvc:
+    converters:
+      preferred-json-mapper: fastjson
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 200MB
+  # shutdown graceful时，等待活动请求完成的缓冲期
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+# mybatis plus日志输出
+mybatis-plus:
+  type-aliases-package: org.learn.tech.redis.**
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    # 在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: reuse
+    use-actual-param-name: true
+  global-config:
+    db-config:
+      id-type: AUTO
+#      logicDeleteField: isDelete
+#      logic-not-delete-value: 0
+#      logic-delete-value: 1
+
+# pagehelper分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: false
+  params: count=countSql
+
+# 暴露监控端点
+management:
+  server:
+    port: 8080
+  health:
+    db:
+      enabled: false
+  endpoints:
+    web:
+      base-path: "/actuator"
+      exposure:
+        include: [ "beans","health","shutdown","env","scheduledtasks","mappings" ]
+    jmx:
+      exposure:
+        exclude: "*"
+  endpoint:
+    heapdump:
+      enabled: false
+    health:
+      show-details: always
+    startup:
+      enabled: true
+    # 服务优雅停机
+    shutdown:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
