@@ -6,6 +6,7 @@ import org.springframework.data.redis.connection.ReturnType;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.types.Expiration;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * redis 操作
  */
 @Slf4j
+@Service
 public class RedisOperators {
 
     @Resource
@@ -35,7 +37,7 @@ public class RedisOperators {
         //将UUID当做value，确保唯一性
         String lockReference = UUID.randomUUID().toString();
         try {
-            if (!lock(lockKey, lockReference, timeout, TimeUnit.SECONDS)) {
+            if (!lock(lockKey, lockReference, timeout)) {
                 throw new Exception("");
             }
             return callable.call();
@@ -50,9 +52,8 @@ public class RedisOperators {
      * @param key
      * @param value
      * @param timeout
-     * @param timeUnit
      */
-    private boolean lock(String key, String value, long timeout, TimeUnit timeUnit) {
+    private boolean lock(String key, String value, long timeout) {
         Boolean locked;
         try {
             //SET_IF_ABSENT --> NX: Only set the key if it does not already exist.
@@ -61,11 +62,11 @@ public class RedisOperators {
                     connection.set(
                             key.getBytes(StandardCharsets.UTF_8),
                             value.getBytes(StandardCharsets.UTF_8),
-                            Expiration.from(timeout, timeUnit),
+                            Expiration.from(timeout, TimeUnit.SECONDS),
                             RedisStringCommands.SetOption.SET_IF_ABSENT
                     )
             );
-            if (locked) {
+            if (Boolean.TRUE.equals(locked)) {
                 log.info("当前机器分布式加锁成功，key={}", key);
             }
         } catch (Exception e) {
@@ -76,19 +77,20 @@ public class RedisOperators {
     }
 
     /**
-     * redis解锁
+     * Executes a Lua script on Redis to unlock a distributed lock.
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key   The key of the lock in Redis.
+     * @param value The value associated with the lock.
+     * @return true if the lock was successfully unlocked, false otherwise.
      */
     private boolean unlock(String key, String value) {
+        Boolean unlock;
         try {
             //使用lua脚本保证删除的原子性，确保解锁
             String script = "if redis.call('get', KEYS[1]) == ARGV[1] "
                     + "then return redis.call('del', KEYS[1]) "
                     + "else return 0 end";
-            Boolean unlockState = redisTemplate.execute((RedisCallback<Boolean>) connection ->
+            unlock = redisTemplate.execute((RedisCallback<Boolean>) connection ->
                     connection.eval(
                             script.getBytes(),
                             ReturnType.BOOLEAN,
@@ -97,40 +99,86 @@ public class RedisOperators {
                             value.getBytes(StandardCharsets.UTF_8)
                     )
             );
-            if (unlockState) {
+            if (Boolean.TRUE.equals(unlock)) {
                 log.info("当前机器分布式解锁成功，key={}", key);
             }
-            return unlockState == null || !unlockState;
+
         } catch (Exception e) {
             log.error("unLock failed for redis key: {}, value: {}", key, value);
-            return false;
+            unlock = false;
         }
+        return unlock == null || !unlock;
     }
 
+    /**
+     * Sets a key-value pair in Redis with an expiration time.
+     *
+     * @param key   The key of the data to be stored.
+     * @param value The value to be stored.
+     * @throws Exception If an error occurs while setting the value.
+     */
     public void set(String key, String value) throws Exception {
         redisTemplate.opsForValue().set(key, value, 24 * 60 * 60, TimeUnit.SECONDS);
     }
 
+    /**
+     * Retrieves the value associated with a key from Redis.
+     *
+     * @param key The key of the data to be retrieved.
+     * @return The value associated with the key, or null if the key does not exist.
+     * @throws Exception If an error occurs while retrieving the value.
+     */
     public Object get(String key) throws Exception {
         return redisTemplate.opsForValue().get(key);
     }
 
+    /**
+     * Deletes a key from Redis.
+     *
+     * @param key The key to be deleted.
+     * @return true if the key was deleted, false otherwise.
+     */
     public boolean deleteKey(String key) {
         return redisTemplate.delete(key);
     }
 
+    /**
+     * Pops an element from the right end of a list in Redis.
+     *
+     * @param key The key of the list.
+     * @return The element popped from the list, or null if the list is empty.
+     */
     public Object rightPop(String key) {
         return redisTemplate.opsForList().rightPop(key);
     }
 
+    /**
+     * Pops multiple elements from the right end of a list in Redis.
+     *
+     * @param key   The key of the list.
+     * @param count The number of elements to pop.
+     * @return A list of elements popped from the list.
+     */
     public List<Object> rightPop(String key, long count) {
         return redisTemplate.opsForList().rightPop(key, count);
     }
 
+    /**
+     * Pushes an element onto the left end of a list in Redis.
+     *
+     * @param key   The key of the list.
+     * @param value The element to be pushed.
+     */
     public void leftPush(String key, Object value) {
         redisTemplate.opsForList().leftPush(key, value);
     }
 
+    /**
+     * Returns the length of a list in Redis.
+     *
+     * @param key The key of the list.
+     * @return The length of the list.
+     */
     public long listLength(String key) {
         return redisTemplate.opsForList().size(key);
     }
