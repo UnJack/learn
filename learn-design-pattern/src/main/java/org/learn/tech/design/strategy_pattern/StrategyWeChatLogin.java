@@ -1,14 +1,14 @@
 package org.learn.tech.design.strategy_pattern;
 
-public class QQLoginHandler implements LoginHandler<String> {
+public class StrategyWeChatLogin implements LoginStrategy<String> {
 
     @Override
     public int getLoginType() {
-        return 0;
+        return 1;
     }
 
     @Override
     public void handleLogin(String request) {
-        System.out.println("qq login");
+        System.out.println("wechat login " + request);
     }
 }
