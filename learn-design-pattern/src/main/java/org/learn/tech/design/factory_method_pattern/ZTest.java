@@ -1,4 +1,4 @@
-package org.learn.tech.design.factory_method;
+package org.learn.tech.design.factory_method_pattern;
 
 /**
  * 工厂方法模式

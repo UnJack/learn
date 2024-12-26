@@ -1,4 +1,4 @@
-package org.learn.tech.design.factory_method;
+package org.learn.tech.design.factory_method_pattern;
 
 public class AppleDialog extends Dialog {
 

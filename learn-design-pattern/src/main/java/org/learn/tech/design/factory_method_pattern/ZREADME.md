@@ -8,9 +8,9 @@
 
 如果你希望用户能扩展你软件库或框架的内部组件， 可使用工厂方法。
 
-<img src="../factory_method/png/img_2.png" alt="工厂方法模式结构">
-
 # 工厂方法模式结构
+
+<img src="../factory_method_pattern/png/img_2.png" alt="工厂方法模式结构"/>
 
 1、产品 （Product） 将会对接口进行声明。 对于所有由创建者及其子类构建的对象， 这些接口都是通用的。
 
@@ -40,7 +40,7 @@
 
 - 应用工厂方法模式需要引入许多新的子类， 代码可能会因此变得更复杂。 最好的情况是将该模式引入创建者类的现有层次结构中。
 
-<img src="../factory_method/png/img_1.png" alt="demo工厂方法模式结构">
+<img src="../factory_method_pattern/png/img_1.png" alt="demo工厂方法模式结构">
 
 # 与其他模式的关系
 
