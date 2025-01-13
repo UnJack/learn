@@ -5,6 +5,8 @@ package org.learn.tech.design.producer_consumer_pattern.storage1;
  * User: jimjian
  * Date: 15-12-18 Time: 上午9:25
  */
+
+import lombok.Getter;
 import org.learn.tech.design.producer_consumer_pattern.StorageInterface;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -18,6 +20,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * put()方法：类似于我们上面的生产者线程，容量达到最大时，自动阻塞。
  * take()方法：类似于我们上面的消费者线程，容量为0时，自动阻塞。
  */
+@Getter
 public class Storage implements StorageInterface {
     // 仓库最大存储量
     private final int MAX_SIZE = 100;

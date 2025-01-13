@@ -3,6 +3,12 @@ package org.learn.tech.design.builder_pattern;
 import org.learn.tech.design.builder_pattern.product.Car;
 import org.learn.tech.design.builder_pattern.product.Manual;
 
+/**
+ * 建造者模式</br>
+ * 以下是来自核心 Java 程序库的一些示例：</br>
+ * {@link java.lang.StringBuilder#append(String)}</br>
+ * {@link java.lang.StringBuffer#append(String)}</br>
+ */
 public class ZTest {
     public static void main(String[] args) {
         Director director = new Director();
