@@ -14,10 +14,12 @@ import org.learn.tech.leetcode.common.TreeNodeFactory;
 public class test02 {
 
     public static void main(String[] args) {
-        LinkedListNode<Integer> head = TreeNodeFactory.getLinkedListNode();
+//        2->4->6->8->10
+        LinkedListNode<Integer> head = TreeNodeFactory.getNoneRepeatLinkedListNode();
         print(head);
         LinkedListNode<Integer> midNode = getMidNode(head, null);
-        System.out.println("midNode.getData() = " + midNode.getData());
+        System.out.println();
+        System.out.println("midNode = " + midNode.getData());
     }
 
     public static void print(LinkedListNode<Integer> head) {

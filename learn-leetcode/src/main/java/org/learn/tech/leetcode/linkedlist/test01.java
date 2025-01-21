@@ -6,6 +6,6 @@ import org.learn.tech.leetcode.common.TreeNodeFactory;
 public class test01 {
 
     public static void main(String[] args) {
-        LinkedListNode<Integer> head = TreeNodeFactory.getLinkedListNode();
+        LinkedListNode<Integer> head = TreeNodeFactory.getNoneRepeatLinkedListNode();
     }
 }

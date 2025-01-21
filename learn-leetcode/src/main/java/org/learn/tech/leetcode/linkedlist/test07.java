@@ -16,7 +16,7 @@ import java.util.Set;
 public class test07 {
 
     public static void main(String[] args) {
-        LinkedListNode<Integer> head = TreeNodeFactory.getLinkedListNode2();
+        LinkedListNode<Integer> head = TreeNodeFactory.getCycleLinkedListNode();
         System.out.println(hasCycle1(head));
         System.out.println(hasCycle2(head));
     }

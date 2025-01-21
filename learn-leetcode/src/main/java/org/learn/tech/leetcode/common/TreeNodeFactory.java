@@ -19,12 +19,17 @@ public class TreeNodeFactory {
         return root;
     }
 
-    public static LinkedListNode<Integer> getLinkedListNode() {
-        LinkedListNode<Integer> head = new LinkedListNode<>(10);
-        LinkedListNode<Integer> node1 = new LinkedListNode<>(11);
-        LinkedListNode<Integer> node2 = new LinkedListNode<>(12);
-        LinkedListNode<Integer> node3 = new LinkedListNode<>(13);
-        LinkedListNode<Integer> node4 = new LinkedListNode<>(12);
+    /**
+     * 有重复元素链表
+     *
+     * @return
+     */
+    public static LinkedListNode<Integer> getRepeatLinkedListNode() {
+        LinkedListNode<Integer> head = new LinkedListNode<>(1);
+        LinkedListNode<Integer> node1 = new LinkedListNode<>(3);
+        LinkedListNode<Integer> node2 = new LinkedListNode<>(5);
+        LinkedListNode<Integer> node3 = new LinkedListNode<>(5);
+        LinkedListNode<Integer> node4 = new LinkedListNode<>(7);
         head.setNext(node1);
         node1.setNext(node2);
         node2.setNext(node3);
@@ -32,14 +37,21 @@ public class TreeNodeFactory {
         return head;
     }
 
-    public static LinkedListNode<Integer> getLinkedListNode1() {
+    /**
+     * 无重复元素链表
+     *
+     * @return
+     */
+    public static LinkedListNode<Integer> getNoneRepeatLinkedListNode() {
         LinkedListNode<Integer> head = new LinkedListNode<>(2);
-        LinkedListNode<Integer> node1 = new LinkedListNode<>(3);
-        LinkedListNode<Integer> node2 = new LinkedListNode<>(9);
-        LinkedListNode<Integer> node3 = new LinkedListNode<>(14);
+        LinkedListNode<Integer> node1 = new LinkedListNode<>(4);
+        LinkedListNode<Integer> node2 = new LinkedListNode<>(6);
+        LinkedListNode<Integer> node3 = new LinkedListNode<>(8);
+        LinkedListNode<Integer> node4 = new LinkedListNode<>(10);
         head.setNext(node1);
         node1.setNext(node2);
         node2.setNext(node3);
+        node3.setNext(node4);
         return head;
     }
 
@@ -48,7 +60,7 @@ public class TreeNodeFactory {
      *
      * @return
      */
-    public static LinkedListNode<Integer> getLinkedListNode2() {
+    public static LinkedListNode<Integer> getCycleLinkedListNode() {
         LinkedListNode<Integer> head = new LinkedListNode<>(1);
         LinkedListNode<Integer> node1 = new LinkedListNode<>(2);
         LinkedListNode<Integer> node2 = new LinkedListNode<>(3);

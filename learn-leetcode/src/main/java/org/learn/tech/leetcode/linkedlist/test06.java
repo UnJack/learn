@@ -13,8 +13,8 @@ import org.learn.tech.leetcode.common.TreeNodeFactory;
 public class test06 {
 
     public static void main(String[] args) {
-//        10->11->12->13->14->15->16
-        LinkedListNode<Integer> head = TreeNodeFactory.getLinkedListNode();
+//        1->3->5->5->7
+        LinkedListNode<Integer> head = TreeNodeFactory.getRepeatLinkedListNode();
         LinkedListNode<Integer> head0 = reverseList(head);
         while (head0 != null) {
             System.out.print(head0.getData() + "->");
