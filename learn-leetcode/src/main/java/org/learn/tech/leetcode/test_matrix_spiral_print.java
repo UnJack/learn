@@ -35,7 +35,9 @@ public class test_matrix_spiral_print {
             for (int row = top; row <= bottom; row++) {
                 System.out.println(matrix[row][right]);
             }
-            --right;
+            if (--right < left) {
+                break;
+            }
             //从右往左
             for (int col = right; col >= left; col--) {
                 System.out.println(matrix[bottom][col]);
@@ -47,7 +49,9 @@ public class test_matrix_spiral_print {
             for (int row = bottom; row >= top; row--) {
                 System.out.println(matrix[row][left]);
             }
-            ++left;
+            if (++left > right) {
+                break;
+            }
         }
     }
 }
