@@ -4,12 +4,18 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
     <property name="LOG_PATH" value="logs"/>
-    <property name="LOG_INFO_FILE" value="${LOG_INFO_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/info.log}"/>
-    <property name="LOG_DEBUG_FILE" value="${LOG_DEBUG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/debug.log}"/>
-    <property name="LOG_ERROR_FILE" value="${LOG_ERROR_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/error.log}"/>
-    <property name="LOG_INFO_FILE_PATTERN" value="${LOG_INFO_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/info/info.log}"/>
-    <property name="LOG_DEBUG_FILE_PATTERN" value="${LOG_DEBUG_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/debug/debug.log}"/>
-    <property name="LOG_ERROR_FILE_PATTERN" value="${LOG_ERROR_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/error/error.log}"/>
+    <property name="LOG_INFO_FILE"
+              value="${LOG_INFO_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/info.log}"/>
+    <property name="LOG_DEBUG_FILE"
+              value="${LOG_DEBUG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/debug.log}"/>
+    <property name="LOG_ERROR_FILE"
+              value="${LOG_ERROR_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/error.log}"/>
+    <property name="LOG_INFO_FILE_PATTERN"
+              value="${LOG_INFO_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/info/info.log}"/>
+    <property name="LOG_DEBUG_FILE_PATTERN"
+              value="${LOG_DEBUG_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/debug/debug.log}"/>
+    <property name="LOG_ERROR_FILE_PATTERN"
+              value="${LOG_ERROR_FILE_PATTERN:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/error/error.log}"/>
 
     <!-- 控制台日志输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -27,7 +33,8 @@
         <!--日志文件保存路径-->
         <file>${LOG_DEBUG_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_DEBUG_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_DEBUG_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}
+            </fileNamePattern>
             <!-- 日志文件最大容量 -->
             <maxFileSize>500MB</maxFileSize>
             <!--日志文件保留天数-->
@@ -48,7 +55,8 @@
         <!--日志文件保存路径-->
         <file>${LOG_INFO_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_INFO_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_INFO_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}
+            </fileNamePattern>
             <!-- 日志文件最大容量 -->
             <maxFileSize>500MB</maxFileSize>
             <!--日志文件保留天数-->
@@ -69,7 +77,8 @@
         <!--日志文件保存路径-->
         <file>${LOG_ERROR_FILE}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_ERROR_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <fileNamePattern>${ROLLING_FILE_NAME_PATTERN:-${LOG_ERROR_FILE_PATTERN}.%d{yyyy-MM-dd}.%i.gz}
+            </fileNamePattern>
             <!-- 日志文件最大容量 -->
             <maxFileSize>200MB</maxFileSize>
             <!--日志文件保留天数-->
