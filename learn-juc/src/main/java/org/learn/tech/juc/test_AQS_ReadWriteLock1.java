@@ -33,9 +33,9 @@ public class test_AQS_ReadWriteLock1 {
 
     static class ReadWriteLockMap {
         private Object data = null;
-        private ReadWriteLock rw = new ReentrantReadWriteLock();
-        private Lock readLock = rw.readLock();
-        private Lock writeLock = rw.writeLock();
+        private final ReadWriteLock rw = new ReentrantReadWriteLock();
+        private final Lock readLock = rw.readLock();
+        private final Lock writeLock = rw.writeLock();
 
         public void get() {
             readLock.lock();

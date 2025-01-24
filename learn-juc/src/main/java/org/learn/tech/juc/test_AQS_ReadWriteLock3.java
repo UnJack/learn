@@ -12,8 +12,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class test_AQS_ReadWriteLock3 {
 
-    private Map<String, Object> map = new HashMap();//缓存器
-    private ReadWriteLock rwl = new ReentrantReadWriteLock();
+    private final Map<String, Object> map = new HashMap<>();//缓存器
+    private final ReadWriteLock rwl = new ReentrantReadWriteLock();
 
     public static void main(String[] args) {
         test_AQS_ReadWriteLock3 t = new test_AQS_ReadWriteLock3();
