@@ -7,10 +7,10 @@ import java.net.InetAddress;
 
 /**
  * Created by jimjian on 2017/3/3.
- * http://blog.csdn.net/qq_23473123/article/details/51464272
  * 服务器端，实现基于UDP的用户登陆
  */
 public class UDPServer {
+
     public static void main(String[] args) throws IOException {
         /*
          * 接收客户端发送的数据

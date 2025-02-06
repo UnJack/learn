@@ -12,7 +12,6 @@ import java.util.Iterator;
 /**
  * User: jimjian
  * Date: 16-6-21 下午6:20
- * http://ifeve.com/overview/
  */
 public class NIOServer {
 

@@ -1,5 +1,7 @@
 package org.learn.tech.io.bio;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,38 +9,40 @@ import java.io.InputStream;
 /**
  * Created by jimjian on 15/5/10.
  */
-public class test_InputStream extends FileUtil {
+@Slf4j
+public class test_InputStream {
+
     private InputStream inputStream = null;
     private int i = 0;
-    private byte[] b = null;
 
     //从输入流里读取字节数据
-    public void read() {
+    public void read(String path) {
         try {
-            inputStream = this.getClass().getResourceAsStream(READ_PATH);
+            inputStream = this.getClass().getResourceAsStream(path);
             while (true) {
+                assert inputStream != null;
                 i = inputStream.read();
                 if (i == -1) break;
                 System.out.print((char) i);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            log.error("read error", e);
         } finally {
             try {
+                assert inputStream != null;
                 inputStream.close();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
     //从输入流里读取块数据
-    public void readArray() {
+    public void readArray(String path) {
         try {
-            inputStream = this.getClass().getResourceAsStream(READ_PATH);
-            b = new byte[inputStream.available()];
+            inputStream = this.getClass().getResourceAsStream(path);
+            assert inputStream != null;
+            byte[] b = new byte[inputStream.available()];
             while (true) {
                 i = inputStream.read(b);
                 if (i == -1) break;
@@ -48,6 +52,7 @@ public class test_InputStream extends FileUtil {
             e.printStackTrace();
         } finally {
             try {
+                assert inputStream != null;
                 inputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -58,6 +63,6 @@ public class test_InputStream extends FileUtil {
     public static void main(String[] args) {
         test_InputStream testInputStream = new test_InputStream();
 //        testInputStream.read();
-        testInputStream.readArray();
+        testInputStream.readArray("");
     }
 }

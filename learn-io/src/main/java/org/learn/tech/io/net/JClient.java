@@ -2,13 +2,14 @@ package org.learn.tech.io.net;
 
 import java.io.*;
 import java.net.Socket;
+
 /**
  * User: jimjian
  * Date: 16-6-21 下午6:49
  */
 public class JClient {
+
     public static void main(String[] args) {
-        OutputStreamWriter outputStreamWriter = null;
         BufferedReader bufferedReader = null;
         Socket socket = null;
         try {
@@ -22,13 +23,6 @@ public class JClient {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (outputStreamWriter != null) {
-                try {
-                    outputStreamWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
             if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
