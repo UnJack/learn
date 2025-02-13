@@ -7,7 +7,7 @@ package org.learn.tech.leetcode;
  * https://leetcode.cn/problems/XltzEq/solutions/1398915/you-xiao-de-hui-wen-by-leetcode-solution-uj86/
  * </a>
  */
-public class test14 {
+public class test_is_palindrome_string {
 
     public static void main(String[] args) {
         String s = "A man, a plan, a canal: Panama";

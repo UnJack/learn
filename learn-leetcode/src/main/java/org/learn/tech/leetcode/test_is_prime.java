@@ -4,7 +4,7 @@ package org.learn.tech.leetcode;
  * Created by jimjian on 2017/3/18.
  * 判断素数
  */
-public class test_prime {
+public class test_is_prime {
 
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {

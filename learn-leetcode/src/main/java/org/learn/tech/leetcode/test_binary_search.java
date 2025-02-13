@@ -1,9 +1,10 @@
 package org.learn.tech.leetcode;
 
 /**
+ * @link 二分查找
  * Created by jimjian on 2016/9/1.
  */
-public class test_binarySearch {
+public class test_binary_search {
 
     public static void main(String[] args) {
         int[] arrays = {2, 8, 10, 16, 64, 512, 1024};
@@ -12,7 +13,6 @@ public class test_binarySearch {
     }
 
     /**
-     *
      * @param arr
      * @param tag
      * @return
@@ -34,13 +34,13 @@ public class test_binarySearch {
     }
 
     /**
-     * 递归方法实现二分查找法.
+     * 递归.
      *
-     * @param arr
+     * @param arr 数组
      * @param l   数组第一位置
      * @param r   最高
-     * @param tag 要查找的值.
-     * @return 返回值.
+     * @param tag 要查找的值
+     * @return 返回值
      */
     public static int BinSearch(int[] arr, int l, int r, int tag) {
         if (l <= r) {

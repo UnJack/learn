@@ -1,9 +1,13 @@
 package org.learn.tech.leetcode;
 
 /**
- * 回文数
+ * @link 回文数
+ * </br>
+ * <a href="https://leetcode.cn/problems/palindrome-number/description/">
+ * https://leetcode.cn/problems/palindrome-number/description/
+ * </a>
  */
-public class test03 {
+public class test_is_palindrome_number {
 
     public static void main(String[] args) {
         int num = 4;

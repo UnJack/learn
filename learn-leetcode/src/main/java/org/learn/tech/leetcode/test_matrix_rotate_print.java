@@ -20,6 +20,7 @@ public class test_matrix_rotate_print {
                 {19, 18, 17, 16}
         };
         int[][] newMatrix = rotate(matrix);
+        //输出
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 System.out.print(newMatrix[i][j] + " ");
@@ -28,6 +29,12 @@ public class test_matrix_rotate_print {
         }
     }
 
+    /**
+     * 旋转
+     *
+     * @param matrix 二维数组
+     * @return 返回旋转之后的二维数组
+     */
     public static int[][] rotate(int[][] matrix) {
         int n = matrix.length;
         int[][] newMatrix = new int[n][n];

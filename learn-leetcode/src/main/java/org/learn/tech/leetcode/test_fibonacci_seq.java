@@ -7,7 +7,7 @@ import java.util.List;
  * Created by jimjian on 2020-03-15.
  * 斐波那契
  */
-public class test_fibonacciSequence {
+public class test_fibonacci_seq {
 
     public static void main(String[] args) {
         for (int i = 0; i < 9; i++) {

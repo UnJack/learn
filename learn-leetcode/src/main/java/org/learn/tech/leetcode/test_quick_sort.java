@@ -1,10 +1,10 @@
 package org.learn.tech.leetcode;
 
 /**
+ * @link 快速排序
  * Created by jimjian on 2017/8/7.
- * 快速排序
  */
-public class test_quickSort {
+public class test_quick_sort {
     public static void main(String[] args) {
         int[] arr = {3, 1, 5, 7, 2, 4, 9, 6, 10, 8};
         sort(arr, 0, arr.length - 1);
