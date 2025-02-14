@@ -18,7 +18,9 @@ public class test_is_palindrome_string {
         StringBuilder stringBuffer = new StringBuilder();
         char[] chars = s.toCharArray();
         for (char aChar : chars) {
+            //判断是不是字母、数字
             if (Character.isLetterOrDigit(aChar)) {
+                //字母大写转小写
                 stringBuffer.append(Character.toLowerCase(aChar));
             }
         }

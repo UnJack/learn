@@ -15,7 +15,7 @@ import java.util.Map;
 public class test_phone_num_combination {
 
     public static void main(String[] args) {
-        System.out.println(letterCombinations("799"));
+        System.out.println(letterCombinations("798"));
     }
 
     public static List<String> letterCombinations(String digits) {
@@ -50,8 +50,7 @@ public class test_phone_num_combination {
         } else {
             char digit = digits.charAt(index);
             String letters = phoneMap.get(digit);
-            int letterCount = letters.length();
-            for (int i = 0; i < letterCount; i++) {
+            for (int i = 0; i < letters.length(); i++) {
                 combination.append(letters.charAt(i));
                 backtrack(combinations, phoneMap, digits, index + 1, combination);
                 combination.deleteCharAt(index);

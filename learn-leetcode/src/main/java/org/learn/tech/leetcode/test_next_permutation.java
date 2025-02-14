@@ -46,5 +46,4 @@ public class test_next_permutation {
             right--;
         }
     }
-
 }
