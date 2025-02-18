@@ -25,11 +25,11 @@ public class test_permute {
         for (int num : nums) {
             output.add(num);
         }
-        backtrack(output, res, nums.length, 0);
+        backtrack(res, output, nums.length, 0);
         return res;
     }
 
-    public static void backtrack(List<Integer> output, List<List<Integer>> res, int length, int first) {
+    public static void backtrack(List<List<Integer>> res, List<Integer> output, int length, int first) {
         // 所有数都填完了
         if (first == length) {
             res.add(output);
@@ -38,7 +38,7 @@ public class test_permute {
             // 动态维护数组
             Collections.swap(output, first, i);
             // 继续递归填下一个数
-            backtrack(output, res, length, first + 1);
+            backtrack(res, output, length, first + 1);
             // 撤销操作
             Collections.swap(output, first, i);
         }
